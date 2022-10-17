@@ -38,7 +38,7 @@
 1) Exit the app container.
    
 
-    $ exit
+     exit
 
     
 
@@ -46,4 +46,4 @@
 
     
 
-    $ docker-compose down
+     docker-compose down
