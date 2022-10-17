@@ -1,0 +1,2 @@
+[2022-10-16T06:37:08.588340+00:00] mylog.INFO: Exception in /var/www/html/src/Models/Cookie.php:27 Stack trace: #0 /var/www/html/src/Actions/Game.php(70): Src\Models\Cookie->get() #1 /var/www/html/src/Dispatcher.php(25): Src\Actions\Game->play() #2 /var/www/html/public/index.php(11): Src\Dispatcher->run() #3 {main} [] []
+
