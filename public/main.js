@@ -3,7 +3,7 @@ document.body.addEventListener('click', function(e){
     if(e.target.closest('.cell')){
         let target = e.target.closest('.cell');
 
-        if(target.classList.contains('played')) return;
+        if(target.classList.contains('played'))return;
         
         let cell = target.dataset.id;
         let turnSign = document.getElementById('turnSign').innerText;
@@ -13,6 +13,7 @@ document.body.addEventListener('click', function(e){
         img.src= src;
         img.classList.add('smallImg')
         target.appendChild(img);
+        target.classList.add('played');
 
         let formData = new FormData;
         formData.append('cell', cell);
