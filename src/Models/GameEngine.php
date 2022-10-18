@@ -251,4 +251,15 @@ class GameEngine implements GameEngineInterface
         session_unset();
         setcookie('game', "", time()-1, "/");
     }
+
+    public function currentPlayer()
+    {
+        return $this->playerName(getTurn());
+    }
+
+    private function playerName($player='x')
+    {
+        return $_SESSION['PLAYER_' . strtoupper($player) . '_NAME'];
+
+    }
 }

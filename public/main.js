@@ -39,6 +39,9 @@ document.body.addEventListener('click', function(e){
                 playBoard.classList.add('hidden');
                 target.classList.remove('played');
             }
+
+            document.getElementById('player').innerText = json.player;
+            document.getElementById('turnSign').innerText = json.turnSign;
         })
     }
 
@@ -102,9 +105,9 @@ document.body.addEventListener('click', function(e){
                     classesToDel[i].classList.remove('played');
                 }
                
-                registerForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
                 resultBlock.classList.add('hidden');
-                playBoard.classList.remove('hidden');
+                playBoard.classList.add('hidden');
             }
 
         })
@@ -144,6 +147,10 @@ document.body.addEventListener('click', function(e){
                 registerForm.classList.add('hidden');
                 resultBlock.classList.add('hidden');
                 playBoard.classList.remove('hidden');
+
+
+                document.getElementById('player').innerText = json.player;
+                document.getElementById('turnSign').innerText = json.turnSign;
             }
 
         })

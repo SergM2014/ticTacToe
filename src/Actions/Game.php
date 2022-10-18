@@ -30,8 +30,10 @@ class Game extends Controller //implements  GameInterface, AuthentificationInter
             return ;
         }
         $this->gameEngine->resetBoard();
+        $currentPlayer = $this->gameEngine->currentPlayer();
+        $turnSign = $this->gameEngine->getTurn();
      
-        echo json_encode(['playAgain' => true ]);
+        echo json_encode(['playAgain' => true, 'player' => $currentPlayer, 'turnSign' => $turnSign ]);
     }
 
     public function reset(): void
@@ -43,11 +45,6 @@ class Game extends Controller //implements  GameInterface, AuthentificationInter
 
     public function register(): void
     {
-        if ($this->playersRegistered()) {
-            $this->play(); 
-            return;
-        }
-
         if(isset($_POST['playerX']) && isset($_POST['playerO'])) {
             $this->gameEngine->initSettings('x');
         }
@@ -71,8 +68,10 @@ class Game extends Controller //implements  GameInterface, AuthentificationInter
         
         $this->storage->set();
         
-        $player = currentPlayer();
-        $turnSign = getTurn();
+        $player = $this->gameEngine->currentPlayer();
+        $turnSign = $this->gameEngine->getTurn();
+
+        
         
         $this->storage->set();
 

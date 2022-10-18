@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-ini_set('session.gc_maxlifetime', 120);
+ini_set('session.gc_maxlifetime', 300);
 session_start();
 
 ini_set('error_reporting', E_ALL);

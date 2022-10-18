@@ -26,8 +26,8 @@ require_once "templates/header.php";
 <div id="playBoard" class="<?= playersRegistered()? '' : 'hidden' ?>" >
 <h2>
     
-    <span id="player"><?= currentPlayer() ?></span>'s turn, plays by
-   <span id="turnSign" class="red"><?= getTurn() ?></span>
+    <span id="player"></span>'s turn, plays by
+   <span id="turnSign" class="red"></span>
  
 </h2>
 
@@ -90,22 +90,22 @@ require_once "templates/header.php";
 
                     <h1>
                         <?php
-                        if (@$_GET['player']) {
-                            echo currentPlayer() . " won!";
-                        }
-                        else {
-                            echo "It's a tie!";
-                        }
+                        // if (@$_GET['player']) {
+                        //     echo currentPlayer() . " won!";
+                        // }
+                        // else {
+                        //     echo "It's a tie!";
+                        // }
                         ?>
                     </h1>
 
-                    <div class="player-name">
-                        <?php echo playerName('x')?>'s score: <b><?php echo score('x')?></b>
-                    </div>
+                    <!-- <div class="player-name">
+                         <?php //echo playerName('x')?>'s score: <b><?php //echo score('x')?></b>
+                    </div> -->
 
                     <div class="player-name">
-                        <?php echo playerName('o')?>' score: <b><?php echo score('o')?></b>
-                    </div>
+                        <!-- <?php //echo playerName('o')?>' score: <b><?php //echo score('o')?></b> -->
+                    </div> -->
 
                     <button type="button" id="playAgain" class="playAgain">Play again</button>
                     <button type="button" id="resetGame" class="resetGame">Reset Game</button>
