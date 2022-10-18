@@ -254,12 +254,18 @@ class GameEngine implements GameEngineInterface
 
     public function currentPlayer()
     {
-        return $this->playerName(getTurn());
+        return $this->playerName($this->getTurn());
     }
 
-    private function playerName($player='x')
+    public function playerName($player='x')
     {
         return $_SESSION['PLAYER_' . strtoupper($player) . '_NAME'];
 
+    }
+
+    public function score($player='x')
+    {
+        $score = $_SESSION['PLAYER_' . strtoupper($player) . '_WINS'];
+        return $score ? $score : 0;
     }
 }

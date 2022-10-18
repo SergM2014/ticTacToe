@@ -38,6 +38,12 @@ document.body.addEventListener('click', function(e){
                 resultBlock.classList.remove('hidden');
                 playBoard.classList.add('hidden');
                 target.classList.remove('played');
+
+                document.getElementById('playerX').innerText = json.playerX;
+                document.getElementById('playerO').innerText = json.playerO;
+
+                document.getElementById('scoreX').innerText = json.scoreX;
+                document.getElementById('scoreO').innerText = json.scoreO;
             }
 
             document.getElementById('player').innerText = json.player;

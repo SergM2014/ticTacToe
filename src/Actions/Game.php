@@ -67,31 +67,29 @@ class Game extends Controller //implements  GameInterface, AuthentificationInter
         $tie = $this->gameEngine->playsCount() >= 9 ? true : false;
         
         $this->storage->set();
-        
+
         $player = $this->gameEngine->currentPlayer();
         $turnSign = $this->gameEngine->getTurn();
 
-        
-        
-        $this->storage->set();
+        if($win || $tie) {
+            $this->gameEngine->resetBoard();
+            
+        }
+        $scoreX = $this->gameEngine->score('x');
+        $scoreO = $this->gameEngine->score('o');
+        $playerX = $this->gameEngine->playerName('x');
+        $playerO = $this->gameEngine->playerName('o');
 
-        echo json_encode(['player' => $player, 'turnSign' => $turnSign, 'win' => $win,'tie' => $tie ]);
+        echo json_encode([
+             'player' => $player,
+             'turnSign' => $turnSign, 
+             'win' => $win,
+             'tie' => $tie,
+             'scoreX' => $scoreX,
+             'scoreO' => $scoreO,
+             'playerX' => $playerX,
+             'playerO' => $playerO,
+        ]);
     }
     
-    // /**
-    //  * result
-    //  *
-    //  * @return mixed
-    //  */
-    // public function result(): mixed
-    // {
-    //     if (!$this->playersRegistered()) {
-    //         $this->start(); 
-    //         return null;
-    //     }
-      
-    //     $this->gameEngine->resetBoard();
-        
-    //     return view('result.php');
-    // }
 }

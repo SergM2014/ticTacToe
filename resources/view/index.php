@@ -99,13 +99,13 @@ require_once "templates/header.php";
                         ?>
                     </h1>
 
-                    <!-- <div class="player-name">
-                         <?php //echo playerName('x')?>'s score: <b><?php //echo score('x')?></b>
-                    </div> -->
+                    <div  class="player-name">
+                         <span id="playerX"></span>'s score: <b><span id="scoreX"></span></b>
+                    </div>
 
                     <div class="player-name">
-                        <!-- <?php //echo playerName('o')?>' score: <b><?php //echo score('o')?></b> -->
-                    </div> -->
+                         <span id="playerO"></span>'s score: <b><span id="scoreO"></span></b>
+                    </div> 
 
                     <button type="button" id="playAgain" class="playAgain">Play again</button>
                     <button type="button" id="resetGame" class="resetGame">Reset Game</button>
