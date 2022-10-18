@@ -1,12 +1,11 @@
 <?php
 
 $routes = [
-    '/' =>  [ \Src\Actions\Game::class, 'start'],
-    '/register' => [ \Src\Actions\Game::class, 'register'],
-    '/play' => [ \Src\Actions\Game::class, 'play'],
     '/result' => [ \Src\Actions\Game::class, 'result'],
     'api/turn' => [ \Src\Actions\Game::class, 'turn'],
 
-    '/index' => [ \Src\Actions\Game::class, 'index'],
-    'api/start' => [ \Src\Actions\Game::class, 'playAgain']
+    '/' => [ \Src\Actions\Game::class, 'index'],
+    '/api/play' => [ \Src\Actions\Game::class, 'play'],
+    '/api/reset' => [ \Src\Actions\Game::class, 'reset'],
+    '/register' => [ \Src\Actions\Game::class, 'register'],
 ];

@@ -69,8 +69,8 @@ class GameEngine implements GameEngineInterface
      */
     private function setPlayers(): void
     {
-        $_SESSION['PLAYER_X_NAME'] = $_POST['player-x'] ?? "";
-        $_SESSION['PLAYER_O_NAME'] = $_POST['player-o'] ?? "";
+        $_SESSION['PLAYER_X_NAME'] = $_POST['playerX'] ?? "";
+        $_SESSION['PLAYER_O_NAME'] = $_POST['playerO'] ?? "";
     }
     
     /**

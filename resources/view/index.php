@@ -1,25 +1,26 @@
 <?php
 require_once "templates/header.php";
+
 ?>
 <div id="registerForm" class="<?= playersRegistered()? 'hidden' : '' ?>">
-    <form method="post" action="/register">
+   
         <div class="welcome">
             <h1>Start playing Tic Tac Toe!</h1>
             <h2>Please fill in your names</h2>
 
             <div class="p-name">
-                <label for="player-x"> Player (First)</label>
-                <input type="text" id="player-x" name="player-x" required />
+                <label for="playerX"> Player (First)</label>
+                <input type="text" id="playerX" name="playerX" required />
             </div>
 
             <div class="p-name">
-                <label for="player-o"> Player (Second)</label>
-                <input type="text" id="player-o" name="player-o" required />
+                <label for="playerO"> Player (Second)</label>
+                <input type="text" id="playerO" name="playerO" required />
             </div>
 
-            <button type="submit">Start</button>
+            <button id="registerButton">Start</button>
         </div>
-    </form>
+    
 </div>
 
 <div id="playBoard" class="<?= playersRegistered()? '' : 'hidden' ?>" >

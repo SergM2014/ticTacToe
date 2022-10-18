@@ -9,7 +9,7 @@ use Src\Interfaces\AuthentificationInterface;
 use Src\Interfaces\GameEngineInterface;
 use Src\Interfaces\StorageInterface;
 
-class Game extends Controller implements  GameInterface, AuthentificationInterface
+class Game extends Controller //implements  GameInterface, AuthentificationInterface
 {
     public function __construct(
         private GameEngineInterface $gameEngine,
@@ -21,9 +21,9 @@ class Game extends Controller implements  GameInterface, AuthentificationInterfa
         return view('index.php');
     }
 
-    public function playAgain(): void
+    public function play(): void
     {
-        if(@!$_POST['new']) $this->storage->get();
+        $this->storage->get();
 
         if (!$this->playersRegistered()) {
             echo json_encode(['playersRegistered' => false ]); 
@@ -33,32 +33,26 @@ class Game extends Controller implements  GameInterface, AuthentificationInterfa
      
         echo json_encode(['playAgain' => true ]);
     }
-    
-    /**
-     * start
-     *
-     * @return mixed
-     */
-    public function start(): mixed
+
+    public function reset(): void
     { 
-        if(@$_GET['new'] != true){
-            $this->storage->get();
-            if ($this->playersRegistered()) {
-                $this->play();
-                return null;
-            }
-        }
+       // if(@$_POST['new'] != true){
+            // $this->storage->get();
+            // if ($this->playersRegistered()) {
+            //     $this->playAgain();
+            //     return;
+            // }
+       // }
+       if (!$this->playersRegistered()) {
+        echo json_encode(['playersRegistered' => false ]); 
+        return ;
+    }
         
         $this->gameEngine->resetGame();
 
-        return view('start.php');
+        echo json_encode(['playAgain' => true ]);
     }
-    
-    /**
-     * register
-     *
-     * @return void
-     */
+
     public function register(): void
     {
         if ($this->playersRegistered()) {
@@ -66,33 +60,13 @@ class Game extends Controller implements  GameInterface, AuthentificationInterfa
             return;
         }
 
-        $this->storage->get();
-
-        if(isset($_POST['player-x']) && isset($_POST['player-o'])) {
+        if(isset($_POST['playerX']) && isset($_POST['playerO'])) {
             $this->gameEngine->initSettings('x');
         }
 
         $this->play(); 
 
         return;
-    }
-    
-    /**
-     * play
-     *
-     * @return mixed
-     */
-    public function play(): mixed
-    {
-        if(@!$_GET['new']) $this->storage->get();
-
-        if (!$this->playersRegistered()) {
-            $this->start(); 
-            return null;
-        }
-        $this->gameEngine->resetBoard();
-     
-        return view('play.php');
     }
     
     /**
@@ -117,20 +91,20 @@ class Game extends Controller implements  GameInterface, AuthentificationInterfa
         echo json_encode(['player' => $player, 'turnSign' => $turnSign, 'win' => $win,'tie' => $tie ]);
     }
     
-    /**
-     * result
-     *
-     * @return mixed
-     */
-    public function result(): mixed
-    {
-        if (!$this->playersRegistered()) {
-            $this->start(); 
-            return null;
-        }
+    // /**
+    //  * result
+    //  *
+    //  * @return mixed
+    //  */
+    // public function result(): mixed
+    // {
+    //     if (!$this->playersRegistered()) {
+    //         $this->start(); 
+    //         return null;
+    //     }
       
-        $this->gameEngine->resetBoard();
+    //     $this->gameEngine->resetBoard();
         
-        return view('result.php');
-    }
+    //     return view('result.php');
+    // }
 }

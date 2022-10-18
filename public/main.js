@@ -41,20 +41,87 @@ document.body.addEventListener('click', function(e){
         })
     }
 
-    if(e.target.id === "playAgain"){
-        // let formData = new FormData;
-        // formData.append('cell', cell);
+    // if(e.target.id === "playAgain"){
+    //     fetch(
+    //         '/api/play', {
+    //         method: 'POST',
+    //         credentials: 'same-origin',
+    //         }
+    //     )
+    //     .then(response => response.json())
+    //     .then(json => {
+    //         if (!json.playersRegistered) {
+    //             registerForm.classList.remove('hidden');
+    //             resultBlock.classList.add('hidden');
+    //             playBoard.classList.add('hidden');
+    //         }
+    //         if (json.playAgain == true) {
 
+    //             let itemsToDel = document.querySelectorAll('.smallImg');
+    //             let classesToDel = playBoard.querySelectorAll('.cell');
+
+    //             for (let i = 0; i < itemsToDel.length; i++) { 
+    //                 classesToDel[i].classList.remove('played');
+    //                 itemsToDel[i].remove();
+    //             }
+               
+    //             registerForm.classList.add('hidden');
+    //             resultBlock.classList.add('hidden');
+    //             playBoard.classList.remove('hidden');
+    //         }
+
+    //     })
+    // }
+
+    // if(e.target.id === "resetGame"){
+    //     fetch(
+    //         '/api/reset', {
+    //         method: 'POST',
+    //         credentials: 'same-origin',
+    //         }
+    //     )
+    //     .then(response => response.json())
+    //     .then(json => {
+    //         if (!json.playersRegistered) {
+    //             registerForm.classList.remove('hidden');
+    //             resultBlock.classList.add('hidden');
+    //             playBoard.classList.add('hidden');
+    //         }
+    //         if (json.playAgain == true) {
+
+    //             let itemsToDel = document.querySelectorAll('.smallImg');
+    //             let classesToDel = playBoard.querySelectorAll('.cell');
+
+    //             for (let i = 0; i < itemsToDel.length; i++) { 
+    //                 classesToDel[i].classList.remove('played');
+    //                 itemsToDel[i].remove();
+    //             }
+               
+    //             registerForm.classList.add('hidden');
+    //             resultBlock.classList.add('hidden');
+    //             playBoard.classList.remove('hidden');
+    //         }
+
+    //     })
+    // }
+
+    if(e.target.id === "registerButton"){
+        let playerX = document.getElementById('playerX').value;
+        let playerO = document.getElementById('playerO').value;
+        
+        let formData = new FormData;
+        formData.append('playerX', playerX);
+        formData.append('playerO', playerO);
         fetch(
-            '/api/start', {
+            '/register', {
             method: 'POST',
-           // body: formData,
+            body: formData,
             credentials: 'same-origin',
             }
         )
         .then(response => response.json())
         .then(json => {
-            if (json.playersRegistered) {
+            if (!json.playersRegistered) {
                 registerForm.classList.remove('hidden');
                 resultBlock.classList.add('hidden');
                 playBoard.classList.add('hidden');

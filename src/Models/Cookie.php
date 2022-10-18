@@ -34,6 +34,7 @@ class Cookie implements StorageInterface
     public function set(): void
     {
         $value = session_encode();
-        setcookie('game', $value, time()+86400, '/');
+        //setcookie('game', $value, time()+86400, '/');
+        setcookie('game', $value, time()+240, '/');
     }
 }
