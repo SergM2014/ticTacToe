@@ -18,14 +18,6 @@ class Game extends Controller implements  GameInterface, AuthentificationInterfa
 
     public function index(): mixed
     {
-        
-
-        if (!$this->playersRegistered()) {
-            $this->start(); 
-            return null;
-        }
-        $this->gameEngine->resetBoard();
-     
         return view('index.php');
     }
     

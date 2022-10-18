@@ -1,7 +1,7 @@
 <?php
 require_once "templates/header.php";
 ?>
-<div id="registerform" class="hidden">
+<div id="registerform" class="<?= playersRegistered()? 'hidden' : '' ?>">
     <form method="post" action="/register">
         <div class="welcome">
             <h1>Start playing Tic Tac Toe!</h1>
@@ -22,7 +22,7 @@ require_once "templates/header.php";
     </form>
 </div>
 
-<div id="result" class="hidden">
+<div id="result" class="<?= playersRegistered()? '' : 'hidden' ?>">
     <table class="wrapper" cellpadding="0" cellspacing="0">
         <tr>
             <td>
@@ -55,7 +55,7 @@ require_once "templates/header.php";
     </table>
 </div>
 
-<div id="playBoard" class="hidden" >
+<div id="playBoard" class="<?= playersRegistered()? '' : 'hidden' ?>" >
 <h2>
     
     <span id="player"><?= currentPlayer() ?></span>'s turn, plays by
