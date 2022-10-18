@@ -81,7 +81,7 @@ require_once "templates/header.php";
 </div>
 
 <!-- <div id="result" class="<?= playersRegistered()? '' : 'hidden' ?>"> -->
-<div id="result" class="hidden">
+<div id="resultBlock" class="hidden">
     <table class="wrapper" cellpadding="0" cellspacing="0">
         <tr>
             <td>

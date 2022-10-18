@@ -1,3 +1,6 @@
+let resultBlock = document.getElementById('resultBlock');
+let playBoard = document.getElementById('playBoard');
+
 document.body.addEventListener('click', function(e){
     
     if(e.target.closest('.cell')){
@@ -29,11 +32,10 @@ document.body.addEventListener('click', function(e){
         .then(json => {
             document.getElementById('player').innerText = json.player;
             document.getElementById('turnSign').innerText = json.turnSign;
-            if(json.win) {
-                document.location.href=`/result?player=${json.player}`;
-            }
-            if(json.tie) {
-                document.location.href=`/result`;
+           
+            if(json.win || json.tie) {
+                resultBlock.classList.remove('hidden');
+                playBoard.classList.add('hidden');
             }
         })
     }
