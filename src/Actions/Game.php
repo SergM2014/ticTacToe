@@ -15,6 +15,19 @@ class Game extends Controller implements  GameInterface, AuthentificationInterfa
         private GameEngineInterface $gameEngine,
         private StorageInterface $storage
     ) {}
+
+    public function index(): mixed
+    {
+        
+
+        if (!$this->playersRegistered()) {
+            $this->start(); 
+            return null;
+        }
+        $this->gameEngine->resetBoard();
+     
+        return view('index.php');
+    }
     
     /**
      * start

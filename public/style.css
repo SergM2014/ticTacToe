@@ -112,3 +112,7 @@ border-color: blue;
 .red {
     color: red;
 }
+
+.hidden {
+    display:none;
+}

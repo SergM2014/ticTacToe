@@ -6,4 +6,6 @@ $routes = [
     '/play' => [ \Src\Actions\Game::class, 'play'],
     '/result' => [ \Src\Actions\Game::class, 'result'],
     'api/turn' => [ \Src\Actions\Game::class, 'turn'],
+
+    '/index' => [ \Src\Actions\Game::class, 'index'],
 ];
