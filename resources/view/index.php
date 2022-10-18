@@ -22,39 +22,6 @@ require_once "templates/header.php";
     </form>
 </div>
 
-<div id="result" class="<?= playersRegistered()? '' : 'hidden' ?>">
-    <table class="wrapper" cellpadding="0" cellspacing="0">
-        <tr>
-            <td>
-                <div class="welcome">
-
-                    <h1>
-                        <?php
-                        if (@$_GET['player']) {
-                            echo currentPlayer() . " won!";
-                        }
-                        else {
-                            echo "It's a tie!";
-                        }
-                        ?>
-                    </h1>
-
-                    <div class="player-name">
-                        <?php echo playerName('x')?>'s score: <b><?php echo score('x')?></b>
-                    </div>
-
-                    <div class="player-name">
-                        <?php echo playerName('o')?>' score: <b><?php echo score('o')?></b>
-                    </div>
-
-                    <a href="/play?new=true">Play again</a><br />
-                    <a href="/?new=true">Reset game</a><br />
-                </div>
-            </td>
-        </tr>
-    </table>
-</div>
-
 <div id="playBoard" class="<?= playersRegistered()? '' : 'hidden' ?>" >
 <h2>
     
@@ -111,6 +78,40 @@ require_once "templates/header.php";
        </tr>
        </tbody>
    </table>
+</div>
+
+<!-- <div id="result" class="<?= playersRegistered()? '' : 'hidden' ?>"> -->
+<div id="result" class="hidden">
+    <table class="wrapper" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <div class="welcome">
+
+                    <h1>
+                        <?php
+                        if (@$_GET['player']) {
+                            echo currentPlayer() . " won!";
+                        }
+                        else {
+                            echo "It's a tie!";
+                        }
+                        ?>
+                    </h1>
+
+                    <div class="player-name">
+                        <?php echo playerName('x')?>'s score: <b><?php echo score('x')?></b>
+                    </div>
+
+                    <div class="player-name">
+                        <?php echo playerName('o')?>' score: <b><?php echo score('o')?></b>
+                    </div>
+
+                    <a href="/play?new=true">Play again</a><br />
+                    <a href="/?new=true">Reset game</a><br />
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>
 <?php
 require_once "templates/footer.php";
