@@ -1,7 +1,7 @@
 <?php
 require_once "templates/header.php";
 ?>
-<div id="registerform" class="<?= playersRegistered()? 'hidden' : '' ?>">
+<div id="registerForm" class="<?= playersRegistered()? 'hidden' : '' ?>">
     <form method="post" action="/register">
         <div class="welcome">
             <h1>Start playing Tic Tac Toe!</h1>
@@ -108,7 +108,7 @@ require_once "templates/header.php";
 
                     <button type="button" id="playAgain" class="playAgain">Play again</button>
                     <button type="button" id="resetGame" class="resetGame">Reset Game</button>
-                    
+
                 </div>
             </td>
         </tr>

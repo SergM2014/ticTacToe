@@ -20,6 +20,19 @@ class Game extends Controller implements  GameInterface, AuthentificationInterfa
     {
         return view('index.php');
     }
+
+    public function playAgain(): void
+    {
+        if(@!$_POST['new']) $this->storage->get();
+
+        if (!$this->playersRegistered()) {
+            echo json_encode(['playersRegistered' => false ]); 
+            return ;
+        }
+        $this->gameEngine->resetBoard();
+     
+        echo json_encode(['playAgain' => true ]);
+    }
     
     /**
      * start

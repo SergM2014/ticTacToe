@@ -1,5 +1,6 @@
 let resultBlock = document.getElementById('resultBlock');
 let playBoard = document.getElementById('playBoard');
+let registerForm = document.getElementById('registerForm');
 
 document.body.addEventListener('click', function(e){
     
@@ -37,6 +38,42 @@ document.body.addEventListener('click', function(e){
                 resultBlock.classList.remove('hidden');
                 playBoard.classList.add('hidden');
             }
+        })
+    }
+
+    if(e.target.id === "playAgain"){
+        // let formData = new FormData;
+        // formData.append('cell', cell);
+
+        fetch(
+            '/api/start', {
+            method: 'POST',
+           // body: formData,
+            credentials: 'same-origin',
+            }
+        )
+        .then(response => response.json())
+        .then(json => {
+            if (json.playersRegistered) {
+                registerForm.classList.remove('hidden');
+                resultBlock.classList.add('hidden');
+                playBoard.classList.add('hidden');
+            }
+            if (json.playAgain == true) {
+
+                let itemsToDel = document.querySelectorAll('.smallImg');
+                let classesToDel = playBoard.querySelectorAll('.cell');
+
+                for (let i = 0; i < itemsToDel.length; i++) { 
+                    classesToDel[i].classList.remove('played');
+                    itemsToDel[i].remove();
+                }
+               
+                registerForm.classList.add('hidden');
+                resultBlock.classList.add('hidden');
+                playBoard.classList.remove('hidden');
+            }
+
         })
     }
 })

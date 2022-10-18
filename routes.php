@@ -8,4 +8,5 @@ $routes = [
     'api/turn' => [ \Src\Actions\Game::class, 'turn'],
 
     '/index' => [ \Src\Actions\Game::class, 'index'],
+    'api/start' => [ \Src\Actions\Game::class, 'playAgain']
 ];
