@@ -36,21 +36,9 @@ class Game extends Controller //implements  GameInterface, AuthentificationInter
 
     public function reset(): void
     { 
-       // if(@$_POST['new'] != true){
-            // $this->storage->get();
-            // if ($this->playersRegistered()) {
-            //     $this->playAgain();
-            //     return;
-            // }
-       // }
-       if (!$this->playersRegistered()) {
-        echo json_encode(['playersRegistered' => false ]); 
-        return ;
-    }
-        
         $this->gameEngine->resetGame();
 
-        echo json_encode(['playAgain' => true ]);
+        echo json_encode(['playersRegistered' => false ]);
     }
 
     public function register(): void

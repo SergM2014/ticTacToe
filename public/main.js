@@ -37,73 +37,78 @@ document.body.addEventListener('click', function(e){
             if(json.win || json.tie) {
                 resultBlock.classList.remove('hidden');
                 playBoard.classList.add('hidden');
+                target.classList.remove('played');
             }
         })
     }
 
-    // if(e.target.id === "playAgain"){
-    //     fetch(
-    //         '/api/play', {
-    //         method: 'POST',
-    //         credentials: 'same-origin',
-    //         }
-    //     )
-    //     .then(response => response.json())
-    //     .then(json => {
-    //         if (!json.playersRegistered) {
-    //             registerForm.classList.remove('hidden');
-    //             resultBlock.classList.add('hidden');
-    //             playBoard.classList.add('hidden');
-    //         }
-    //         if (json.playAgain == true) {
+    if(e.target.id === "playAgain"){
+        fetch(
+            '/api/play', {
+            method: 'POST',
+            credentials: 'same-origin',
+            }
+        )
+        .then(response => response.json())
+        .then(json => {
+            if (!json.playersRegistered) {
+                registerForm.classList.remove('hidden');
+                resultBlock.classList.add('hidden');
+                playBoard.classList.add('hidden');
+            }
+            if (json.playAgain == true) {
 
-    //             let itemsToDel = document.querySelectorAll('.smallImg');
-    //             let classesToDel = playBoard.querySelectorAll('.cell');
+                let itemsToDel = document.querySelectorAll('.smallImg');
+                let classesToDel = playBoard.querySelectorAll('.cell');
 
-    //             for (let i = 0; i < itemsToDel.length; i++) { 
-    //                 classesToDel[i].classList.remove('played');
-    //                 itemsToDel[i].remove();
-    //             }
+                for (let i = 0; i < itemsToDel.length; i++) { 
+                    classesToDel[i].classList.remove('played');
+                    itemsToDel[i].remove();
+                }
                
-    //             registerForm.classList.add('hidden');
-    //             resultBlock.classList.add('hidden');
-    //             playBoard.classList.remove('hidden');
-    //         }
+                registerForm.classList.add('hidden');
+                resultBlock.classList.add('hidden');
+                playBoard.classList.remove('hidden');
+            }
 
-    //     })
-    // }
+        })
+    }
 
-    // if(e.target.id === "resetGame"){
-    //     fetch(
-    //         '/api/reset', {
-    //         method: 'POST',
-    //         credentials: 'same-origin',
-    //         }
-    //     )
-    //     .then(response => response.json())
-    //     .then(json => {
-    //         if (!json.playersRegistered) {
-    //             registerForm.classList.remove('hidden');
-    //             resultBlock.classList.add('hidden');
-    //             playBoard.classList.add('hidden');
-    //         }
-    //         if (json.playAgain == true) {
+    if(e.target.id === "resetGame"){
+        fetch(
+            '/api/reset', {
+            method: 'POST',
+            credentials: 'same-origin',
+            }
+        )
+        .then(response => response.json())
+        .then(json => {
+            if (!json.playersRegistered) {
+                registerForm.classList.remove('hidden');
+                resultBlock.classList.add('hidden');
+                playBoard.classList.add('hidden');
+            }
+            if (!json.playerRegistered) {
 
-    //             let itemsToDel = document.querySelectorAll('.smallImg');
-    //             let classesToDel = playBoard.querySelectorAll('.cell');
+                let itemsToDel = document.querySelectorAll('.smallImg');
+                let classesToDel = document.querySelectorAll('.cell');
 
-    //             for (let i = 0; i < itemsToDel.length; i++) { 
-    //                 classesToDel[i].classList.remove('played');
-    //                 itemsToDel[i].remove();
-    //             }
+                for (let i = 0; i < itemsToDel.length; i++) { 
+                   
+                    itemsToDel[i].remove();
+                }
+
+                for(let i = 0; i< classesToDel.length; i++) {
+                    classesToDel[i].classList.remove('played');
+                }
                
-    //             registerForm.classList.add('hidden');
-    //             resultBlock.classList.add('hidden');
-    //             playBoard.classList.remove('hidden');
-    //         }
+                registerForm.classList.add('hidden');
+                resultBlock.classList.add('hidden');
+                playBoard.classList.remove('hidden');
+            }
 
-    //     })
-    // }
+        })
+    }
 
     if(e.target.id === "registerButton"){
         let playerX = document.getElementById('playerX').value;
