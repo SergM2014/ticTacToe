@@ -116,3 +116,14 @@ border-color: blue;
 .hidden {
     display:none;
 }
+
+.playAgain {
+    background-color: green;
+    margin-right:10px;
+    margin-top: 10px;
+}
+
+.resetGame {
+    background-color: red;
+    margin-top: 10px;
+}

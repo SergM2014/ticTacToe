@@ -106,8 +106,9 @@ require_once "templates/header.php";
                         <?php echo playerName('o')?>' score: <b><?php echo score('o')?></b>
                     </div>
 
-                    <a href="/play?new=true">Play again</a><br />
-                    <a href="/?new=true">Reset game</a><br />
+                    <button type="button" id="playAgain" class="playAgain">Play again</button>
+                    <button type="button" id="resetGame" class="resetGame">Reset Game</button>
+                    
                 </div>
             </td>
         </tr>
