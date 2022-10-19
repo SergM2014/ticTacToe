@@ -77,14 +77,8 @@ document.body.addEventListener('click', function(e){
             }
             if (json.playAgain == true) {
 
-                let itemsToDel = document.querySelectorAll('.smallImg');
-                let classesToDel = playBoard.querySelectorAll('.cell');
-//here attention 
-                for (let i = 0; i < itemsToDel.length; i++) { 
-                    classesToDel[i].classList.remove('played');
-                    itemsToDel[i].remove();
-                }
-               
+                cleanBoard();  
+
                 registerForm.classList.add('hidden');
                 resultBlock.classList.add('hidden');
                 playBoard.classList.remove('hidden');
@@ -106,26 +100,9 @@ document.body.addEventListener('click', function(e){
                 registerForm.classList.remove('hidden');
                 resultBlock.classList.add('hidden');
                 playBoard.classList.add('hidden');
+
+                cleanBoard();  
             }
-            if (!json.playerRegistered) {
-
-                let itemsToDel = document.querySelectorAll('.smallImg');
-                let classesToDel = document.querySelectorAll('.cell');
-
-                for (let i = 0; i < itemsToDel.length; i++) { 
-                   
-                    itemsToDel[i].remove();
-                }
-
-                for(let i = 0; i< classesToDel.length; i++) {
-                    classesToDel[i].classList.remove('played');
-                }
-               
-                registerForm.classList.remove('hidden');
-                resultBlock.classList.add('hidden');
-                playBoard.classList.add('hidden');
-            }
-
         })
     }
 
@@ -152,18 +129,11 @@ document.body.addEventListener('click', function(e){
             }
             if (json.playAgain == true) {
 
-                let itemsToDel = document.querySelectorAll('.smallImg');
-                let classesToDel = playBoard.querySelectorAll('.cell');
-
-                for (let i = 0; i < itemsToDel.length; i++) { 
-                    classesToDel[i].classList.remove('played');
-                    itemsToDel[i].remove();
-                }
+                cleanBoard();
                
                 registerForm.classList.add('hidden');
                 resultBlock.classList.add('hidden');
                 playBoard.classList.remove('hidden');
-
 
                 document.getElementById('player').innerText = json.player;
                 document.getElementById('turnSign').innerText = json.turnSign;
@@ -175,11 +145,9 @@ document.body.addEventListener('click', function(e){
 
 document.body.onload = function(){
     
-    
         fetch(
             '/api/init', {
             method: 'POST',
-            //body: formData,
             credentials: 'same-origin',
             }
         )
@@ -217,4 +185,19 @@ document.body.onload = function(){
 
             }
         })
+}
+
+function cleanBoard(){
+
+    let itemsToDel = document.querySelectorAll('.smallImg');
+    let classesToDel = document.querySelectorAll('.cell');
+
+    for (let i = 0; i < itemsToDel.length; i++) { 
+       
+        itemsToDel[i].remove();
+    }
+
+    for(let i = 0; i< classesToDel.length; i++) {
+        classesToDel[i].classList.remove('played');
+    }
 }

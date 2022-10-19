@@ -62,7 +62,7 @@ require_once "templates/header.php";
            }
            ?>
 
-           <td class="cell cell-<?= $i ?> <?= $additionalClass ?>"data-id="<?= $i ?>">
+           <td class="cell  <?= $additionalClass ?>"data-id="<?= $i ?>">
              
            </td>
 
