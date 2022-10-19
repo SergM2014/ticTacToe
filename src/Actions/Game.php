@@ -39,11 +39,12 @@ class Game extends Controller implements  GameProcessInterface, Authentification
             echo json_encode(['playersRegistered' => false ]); 
             return ;
         }
+
         $this->gameEngine->resetBoard();
-        $currentPlayer = $this->gameEngine->currentPlayer();
-        $turnSign = $this->gameEngine->getTurn();
+
+        extract($this->gameEngine->getMovePlayerAndTurn());
      
-        echo json_encode(['playAgain' => true, 'player' => $currentPlayer, 'turnSign' => $turnSign ]);
+        echo json_encode(['play' => true, 'player' => $player, 'turnSign' => $turnSign ]);
     }
     
     /**
@@ -65,10 +66,8 @@ class Game extends Controller implements  GameProcessInterface, Authentification
      */
     public function register(): void
     {
-        if(isset($_POST['playerX']) && isset($_POST['playerO'])) {
-            $this->gameEngine->initSettings('x');
-        }
-
+        if(isset($_POST['playerX']) && isset($_POST['playerO'])) $this->gameEngine->initSettings('x');
+        
         $this->play(); 
 
         return;
@@ -88,13 +87,9 @@ class Game extends Controller implements  GameProcessInterface, Authentification
         
         $this->storage->set();
 
-        $player = $this->gameEngine->currentPlayer();
-        $turnSign = $this->gameEngine->getTurn();
+        extract($this->gameEngine->getMovePlayerAndTurn());
 
-        if($win || $tie) {
-            $this->gameEngine->resetBoard();
-            
-        }
+        if($win || $tie) $this->gameEngine->resetBoard();
         
         extract($this->gameEngine->getMoveInfo());
 
@@ -118,23 +113,20 @@ class Game extends Controller implements  GameProcessInterface, Authentification
      */
     public function init(): void
     {
-        $registered = $this->playersRegistered();
-
-        if(!$registered) { 
+        if(!$this->playersRegistered()) { 
             echo json_encode(['registered' => false]);
             return;
         }
 
-        $markedCells = $this->gameEngine->getMarkedCells();
+        $playedCells = $this->gameEngine->getPlayedCells();
 
-        $player = $this->gameEngine->currentPlayer();
-        $turnSign = $this->gameEngine->getTurn();
+        extract($this->gameEngine->getMovePlayerAndTurn());
 
         echo json_encode([
-            'registered' => $registered,
+            'registered' => true,
             'player' => $player,
             'turnSign' => $turnSign,
-            'markedCells' => $markedCells
+            'playedCells' => $playedCells
         ]);
     }
     

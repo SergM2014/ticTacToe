@@ -292,7 +292,7 @@ class GameEngine implements GameEngineInterface
      *
      * @return array
      */
-    public function getMarkedCells(): array
+    public function getPlayedCells(): array
     {
         $arr = [];
         for($i = 1; $i<10; $i++) {
@@ -316,5 +316,18 @@ class GameEngine implements GameEngineInterface
         $count = $this->playsCount();
 
         return compact(['scoreX', 'scoreO', 'playerX', 'playerO', 'count']);
+    }
+        
+    /**
+     * getMovePlayerAndTurn
+     *
+     * @return array
+     */
+    public function getMovePlayerAndTurn(): array
+    {
+        $player = $this->currentPlayer();
+        $turnSign = $this->getTurn();
+
+        return compact(['player', 'turnSign']);
     }
 }

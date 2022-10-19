@@ -55,13 +55,13 @@ interface GameEngineInterface
     * @return string
     */
    public function currentPlayer(): string;
-   
+      
    /**
-    * getMarkedCells
+    * getPlayedCells
     *
     * @return array
     */
-   public function getMarkedCells(): array;
+   public function getPlayedCells(): array;
    
    /**
     * getMoveInfo

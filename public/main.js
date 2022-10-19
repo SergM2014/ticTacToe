@@ -37,7 +37,6 @@ document.body.addEventListener('click', function(e){
             if(json.win || json.tie) {
                 resultBlock.classList.remove('hidden');
                 playBoard.classList.add('hidden');
-                target.classList.remove('played');
 
                 document.getElementById('playerXresult').innerText = json.playerX;
                 document.getElementById('playerOresult').innerText = json.playerO;
@@ -75,7 +74,7 @@ document.body.addEventListener('click', function(e){
                 resultBlock.classList.add('hidden');
                 playBoard.classList.add('hidden');
             }
-            if (json.playAgain == true) {
+            if (json.play == true) {
 
                 cleanBoard();  
 
@@ -127,7 +126,7 @@ document.body.addEventListener('click', function(e){
                 resultBlock.classList.add('hidden');
                 playBoard.classList.add('hidden');
             }
-            if (json.playAgain == true) {
+            if (json.play == true) {
 
                 cleanBoard();
                
@@ -171,7 +170,7 @@ document.body.onload = function(){
                 let cells = document.querySelectorAll('.cell');
                 for (let i = 0; i < cells.length; i++) { 
                     if (json.markedCells[i+1] ){
-                        if(json.markedCells[i+1] == "x"){
+                        if(json.playedCells[i+1] == "x"){
                             img = `<img src="/images/cross.png" class="smallImg" />`;
                         } else {
                             img = `<img src="/images/circle.png" class="smallImg" />`;
@@ -181,8 +180,6 @@ document.body.onload = function(){
                         cells[i].classList.add('played');
                     }
                 }
-
-
             }
         })
 }
@@ -193,7 +190,6 @@ function cleanBoard(){
     let classesToDel = document.querySelectorAll('.cell');
 
     for (let i = 0; i < itemsToDel.length; i++) { 
-       
         itemsToDel[i].remove();
     }
 
