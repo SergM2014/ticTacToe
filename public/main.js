@@ -185,6 +185,22 @@ document.body.onload = function(){
         )
         .then(response => response.json())
         .then(json => {
-console.log(json.hello)
+
+            if(!json.registered) {
+                registerForm.classList.remove('hidden');
+                playBoard.classList.add('hidden');
+                resultBlock.classList.add('hidden');
+                return;
+            } else {
+                registerForm.classList.add('hidden');
+                playBoard.classList.remove('hidden');
+                resultBlock.classList.add('hidden');
+
+                document.getElementById('player').innerText = json.player;
+                document.getElementById('turnSign').innerText = json.turnSign;
+
+                let calls = document.querySelectorAll('.cell');
+
+            }
         })
 }

@@ -121,8 +121,18 @@ class Game extends Controller implements  GameInterface, AuthentificationInterfa
      */
     public function init(): void
     {
+        $registered = $this->playersRegistered();
 
-        echo json_encode(['hello' => 'world']);
+        if(!$registered) echo json_encode(['registered' => false]);
+
+        $player = $this->gameEngine->currentPlayer();
+        $turnSign = $this->gameEngine->getTurn();
+
+        echo json_encode([
+            'registered' => $registered,
+            'player' => $player,
+            'turnSign' => $turnSign,
+        ]);
     }
     
 }
