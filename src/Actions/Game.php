@@ -9,18 +9,28 @@ use Src\Interfaces\AuthentificationInterface;
 use Src\Interfaces\GameEngineInterface;
 use Src\Interfaces\StorageInterface;
 
-class Game extends Controller //implements  GameInterface, AuthentificationInterface
+class Game extends Controller implements  GameInterface, AuthentificationInterface
 {
     public function __construct(
         private GameEngineInterface $gameEngine,
         private StorageInterface $storage
     ) {}
-
+    
+    /**
+     * index
+     *
+     * @return mixed
+     */
     public function index(): mixed
     {
         return view('index.php');
     }
-
+    
+    /**
+     * play
+     *
+     * @return void
+     */
     public function play(): void
     {
         $this->storage->get();
@@ -35,14 +45,24 @@ class Game extends Controller //implements  GameInterface, AuthentificationInter
      
         echo json_encode(['playAgain' => true, 'player' => $currentPlayer, 'turnSign' => $turnSign ]);
     }
-
+    
+    /**
+     * reset
+     *
+     * @return void
+     */
     public function reset(): void
     { 
         $this->gameEngine->resetGame();
 
         echo json_encode(['playersRegistered' => false ]);
     }
-
+    
+    /**
+     * register
+     *
+     * @return void
+     */
     public function register(): void
     {
         if(isset($_POST['playerX']) && isset($_POST['playerO'])) {

@@ -5,7 +5,13 @@ declare(strict_types=1);
 namespace Src\Interfaces;
 
 interface GameInterface
-{    
+{        
+    /**
+     * index
+     *
+     * @return mixed
+     */
+    public function index(): mixed;
     /**
      * play
      *
@@ -18,7 +24,7 @@ interface GameInterface
      *
      * @return mixed
      */
-    public function result(): mixed;
+    public function reset(): mixed;
     
     /**
      * turn
