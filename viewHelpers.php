@@ -8,8 +8,3 @@ function getCell($cell='')
 {
     return $_SESSION['CELL_' . $cell];
 }
-
-function playersRegistered()
-    {
-         return @$_SESSION['PLAYER_X_NAME'] && @$_SESSION['PLAYER_O_NAME'];
-    }
