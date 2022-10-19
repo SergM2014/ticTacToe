@@ -17,14 +17,14 @@ interface GameInterface
      *
      * @return mixed
      */
-    public function play(): mixed;
+    public function play(): void;
     
     /**
      * result
      *
      * @return mixed
      */
-    public function reset(): mixed;
+    public function reset(): void;
     
     /**
      * turn
@@ -32,4 +32,11 @@ interface GameInterface
      * @return void
      */
     public function turn(): void;
+    
+    /**
+     * init
+     *
+     * @return void
+     */
+    // public function init(): void;
 }

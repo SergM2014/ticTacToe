@@ -114,4 +114,15 @@ class Game extends Controller implements  GameInterface, AuthentificationInterfa
         ]);
     }
     
+    /**
+     * init
+     *
+     * @return void
+     */
+    public function init(): void
+    {
+
+        echo json_encode(['hello' => 'world']);
+    }
+    
 }

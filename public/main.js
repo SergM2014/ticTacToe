@@ -172,3 +172,19 @@ document.body.addEventListener('click', function(e){
         })
     }
 })
+
+document.body.onload = function(){
+    
+    
+        fetch(
+            '/api/init', {
+            method: 'POST',
+            //body: formData,
+            credentials: 'same-origin',
+            }
+        )
+        .then(response => response.json())
+        .then(json => {
+console.log(json.hello)
+        })
+}
