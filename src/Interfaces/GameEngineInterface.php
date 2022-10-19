@@ -56,28 +56,17 @@ interface GameEngineInterface
     */
    public function currentPlayer(): string;
    
-      
-   /**
-    * playerName
-    *
-    * @param  mixed $player
-    * @return string
-    */
-   public function playerName(string $player='x'): string;
-   
-      
-   /**
-    * score
-    *
-    * @param  mixed $player
-    * @return int
-    */
-   public function score(string $player='x'): int;
-   
    /**
     * getMarkedCells
     *
     * @return array
     */
    public function getMarkedCells(): array;
+   
+   /**
+    * getMoveInfo
+    *
+    * @return array
+    */
+   public function getMoveInfo(): array;
 }

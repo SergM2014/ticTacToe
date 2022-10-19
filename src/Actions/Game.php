@@ -95,11 +95,8 @@ class Game extends Controller implements  GameProcessInterface, Authentification
             $this->gameEngine->resetBoard();
             
         }
-        $scoreX = $this->gameEngine->score('x');
-        $scoreO = $this->gameEngine->score('o');
-        $playerX = $this->gameEngine->playerName('x');
-        $playerO = $this->gameEngine->playerName('o');
-        $count = $this->gameEngine->playsCount();
+        
+        extract($this->gameEngine->getMoveInfo());
 
         echo json_encode([
              'player' => $player,

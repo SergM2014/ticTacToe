@@ -269,7 +269,7 @@ class GameEngine implements GameEngineInterface
      * @param  mixed $player
      * @return string
      */
-    public function playerName($player='x'): string
+    private function playerName($player='x'): string
     {
         return $_SESSION['PLAYER_' . strtoupper($player) . '_NAME'];
 
@@ -281,7 +281,7 @@ class GameEngine implements GameEngineInterface
      * @param  mixed $player
      * @return int
      */
-    public function score($player='x'): int
+    private function score($player='x'): int
     {
         $score = $_SESSION['PLAYER_' . strtoupper($player) . '_WINS'];
         return $score ? $score : 0;
@@ -300,5 +300,21 @@ class GameEngine implements GameEngineInterface
         }
 
         return $arr;
+    }
+    
+    /**
+     * getMoveInfo
+     *
+     * @return array
+     */
+    public function getMoveInfo(): array
+    {
+        $scoreX = $this->score('x');
+        $scoreO = $this->score('o');
+        $playerX = $this->playerName('x');
+        $playerO = $this->playerName('o');
+        $count = $this->playsCount();
+
+        return compact(['scoreX', 'scoreO', 'playerX', 'playerO', 'count']);
     }
 }
