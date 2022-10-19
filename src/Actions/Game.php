@@ -63,10 +63,8 @@ class Game extends Controller //implements  GameInterface, AuthentificationInter
     {
         if (!isset($_POST['cell'])) return;
         
-       
         $win = $this->gameEngine->play($_POST['cell']);
         $tie = $this->gameEngine->playsCount() >= 9 ? true : false;
-        
         
         $this->storage->set();
 
