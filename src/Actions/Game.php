@@ -63,8 +63,10 @@ class Game extends Controller //implements  GameInterface, AuthentificationInter
     {
         if (!isset($_POST['cell'])) return;
         
+       
         $win = $this->gameEngine->play($_POST['cell']);
         $tie = $this->gameEngine->playsCount() >= 9 ? true : false;
+        
         
         $this->storage->set();
 
@@ -79,6 +81,7 @@ class Game extends Controller //implements  GameInterface, AuthentificationInter
         $scoreO = $this->gameEngine->score('o');
         $playerX = $this->gameEngine->playerName('x');
         $playerO = $this->gameEngine->playerName('o');
+        $count = $this->gameEngine->playsCount();
 
         echo json_encode([
              'player' => $player,
@@ -89,6 +92,7 @@ class Game extends Controller //implements  GameInterface, AuthentificationInter
              'scoreO' => $scoreO,
              'playerX' => $playerX,
              'playerO' => $playerO,
+             'count' => $count
         ]);
     }
     

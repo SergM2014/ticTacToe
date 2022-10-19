@@ -81,30 +81,21 @@ require_once "templates/header.php";
    </table>
 </div>
 
-<!-- <div id="result" class="<?= playersRegistered()? '' : 'hidden' ?>"> -->
 <div id="resultBlock" class="hidden">
     <table class="wrapper" cellpadding="0" cellspacing="0">
         <tr>
             <td>
                 <div class="welcome">
 
-                    <h1>
-                        <?php
-                        // if (@$_GET['player']) {
-                        //     echo currentPlayer() . " won!";
-                        // }
-                        // else {
-                        //     echo "It's a tie!";
-                        // }
-                        ?>
-                    </h1>
+                    <h1 id="outputWinner" class="hidden"> <span id="winnerName"></span> won!</h1>
+                    <h1 id="outputTie" class="hidden">It's a tie!</h1>
 
                     <div  class="player-name">
-                         <span id="playerX"></span>'s score: <b><span id="scoreX"></span></b>
+                         <span id="playerXresult"></span>'s score: <b><span id="scoreX"></span></b>
                     </div>
 
                     <div class="player-name">
-                         <span id="playerO"></span>'s score: <b><span id="scoreO"></span></b>
+                         <span id="playerOresult"></span>'s score: <b><span id="scoreO"></span></b>
                     </div> 
 
                     <button type="button" id="playAgain" class="playAgain">Play again</button>

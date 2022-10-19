@@ -39,11 +39,21 @@ document.body.addEventListener('click', function(e){
                 playBoard.classList.add('hidden');
                 target.classList.remove('played');
 
-                document.getElementById('playerX').innerText = json.playerX;
-                document.getElementById('playerO').innerText = json.playerO;
+                document.getElementById('playerXresult').innerText = json.playerX;
+                document.getElementById('playerOresult').innerText = json.playerO;
 
                 document.getElementById('scoreX').innerText = json.scoreX;
                 document.getElementById('scoreO').innerText = json.scoreO;
+
+                if(json.win) {
+                    document.getElementById('outputWinner').classList.remove('hidden');
+                    document.getElementById('winnerName').innerText = json.player;
+                    document.getElementById('outputTie').classList.add('hidden');
+                }
+                if(json.tie) {
+                    document.getElementById('outputTie').classList.remove('hidden');
+                    document.getElementById('outputWinner').classList.add('hidden');
+                }
             }
 
             document.getElementById('player').innerText = json.player;

@@ -89,8 +89,8 @@ class GameEngine implements GameEngineInterface
 
         $this->addPlaysCount();
         $win = $this->checkIfPlayWin($cell);
-    
-        if (! $win) {
+//var_dump($win); die();
+        if (!$win) {
             $this->switchTurn();
         }
         else {
