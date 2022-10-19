@@ -251,25 +251,48 @@ class GameEngine implements GameEngineInterface
         session_unset();
         setcookie('game', "", time()-1, "/");
     }
-
-    public function currentPlayer()
+    
+       
+    /**
+     * currentPlayer
+     *
+     * @return string
+     */
+    public function currentPlayer(): string
     {
         return $this->playerName($this->getTurn());
     }
-
-    public function playerName($player='x')
+       
+    /**
+     * playerName
+     *
+     * @param  mixed $player
+     * @return string
+     */
+    public function playerName($player='x'): string
     {
         return $_SESSION['PLAYER_' . strtoupper($player) . '_NAME'];
 
     }
-
-    public function score($player='x')
+         
+    /**
+     * score
+     *
+     * @param  mixed $player
+     * @return int
+     */
+    public function score($player='x'): int
     {
         $score = $_SESSION['PLAYER_' . strtoupper($player) . '_WINS'];
         return $score ? $score : 0;
     }
-
-    public function bumbum()
+         
+    /**
+     * getMarkedCells
+     *
+     * @return array
+     */
+    public function getMarkedCells(): array
     {
         $arr = [];
         for($i = 1; $i<10; $i++) {

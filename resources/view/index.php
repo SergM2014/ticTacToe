@@ -1,7 +1,7 @@
 <?php
 require_once "templates/header.php";
-
 ?>
+
 <div id="registerForm" class="hidden">
    
         <div class="welcome">
@@ -63,15 +63,7 @@ require_once "templates/header.php";
            ?>
 
            <td class="cell cell-<?= $i ?> <?= $additionalClass ?>"data-id="<?= $i ?>">
-               <!-- <?php if (@getCell($i) === 'x'): ?>
-                   
-                        <img src="/images/cross.png" class="smallImg" />
-                  
-               <?php elseif (@getCell($i) === 'o'): ?>
-                  
-                       <img src="/images/circle.png" class="smallImg" />
-                  
-               <?php endif; ?> -->
+             
            </td>
 
        <?php } ?>

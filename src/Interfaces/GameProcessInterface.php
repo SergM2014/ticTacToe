@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Src\Interfaces;
 
-interface GameInterface
+interface GameProcessInterface
 {        
     /**
      * index

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Src\Actions;
 
-use Src\Interfaces\GameInterface;
+use Src\Interfaces\GameProcessInterface;
 use Src\Interfaces\AuthentificationInterface;
 use Src\Interfaces\GameEngineInterface;
 use Src\Interfaces\StorageInterface;
 
-class Game extends Controller implements  GameInterface, AuthentificationInterface
+class Game extends Controller implements  GameProcessInterface, AuthentificationInterface
 {
     public function __construct(
         private GameEngineInterface $gameEngine,
@@ -128,7 +128,7 @@ class Game extends Controller implements  GameInterface, AuthentificationInterfa
             return;
         }
 
-        $markedCells = $this->gameEngine->bumbum();
+        $markedCells = $this->gameEngine->getMarkedCells();
 
         $player = $this->gameEngine->currentPlayer();
         $turnSign = $this->gameEngine->getTurn();

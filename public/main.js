@@ -79,7 +79,7 @@ document.body.addEventListener('click', function(e){
 
                 let itemsToDel = document.querySelectorAll('.smallImg');
                 let classesToDel = playBoard.querySelectorAll('.cell');
-
+//here attention 
                 for (let i = 0; i < itemsToDel.length; i++) { 
                     classesToDel[i].classList.remove('played');
                     itemsToDel[i].remove();
