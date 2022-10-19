@@ -63,7 +63,7 @@ require_once "templates/header.php";
            ?>
 
            <td class="cell cell-<?= $i ?> <?= $additionalClass ?>"data-id="<?= $i ?>">
-               <?php if (@getCell($i) === 'x'): ?>
+               <!-- <?php if (@getCell($i) === 'x'): ?>
                    
                         <img src="/images/cross.png" class="smallImg" />
                   
@@ -71,7 +71,7 @@ require_once "templates/header.php";
                   
                        <img src="/images/circle.png" class="smallImg" />
                   
-               <?php endif; ?>
+               <?php endif; ?> -->
            </td>
 
        <?php } ?>

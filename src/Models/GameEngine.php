@@ -268,4 +268,14 @@ class GameEngine implements GameEngineInterface
         $score = $_SESSION['PLAYER_' . strtoupper($player) . '_WINS'];
         return $score ? $score : 0;
     }
+
+    public function bumbum()
+    {
+        $arr = [];
+        for($i = 1; $i<10; $i++) {
+            $arr[$i] = @$this->getCell($i);
+        }
+
+        return $arr;
+    }
 }

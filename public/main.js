@@ -199,7 +199,21 @@ document.body.onload = function(){
                 document.getElementById('player').innerText = json.player;
                 document.getElementById('turnSign').innerText = json.turnSign;
 
-                let calls = document.querySelectorAll('.cell');
+                let img;
+                let cells = document.querySelectorAll('.cell');
+                for (let i = 0; i < cells.length; i++) { 
+                    if (json.markedCells[i+1] ){
+                        if(json.markedCells[i+1] == "x"){
+                            img = `<img src="/images/cross.png" class="smallImg" />`;
+                        } else {
+                            img = `<img src="/images/circle.png" class="smallImg" />`;
+                        }
+
+                        cells[i].innerHTML = img;
+                        cells[i].classList.add('played');
+                    }
+                }
+
 
             }
         })

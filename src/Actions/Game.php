@@ -128,6 +128,8 @@ class Game extends Controller implements  GameInterface, AuthentificationInterfa
             return;
         }
 
+        $markedCells = $this->gameEngine->bumbum();
+
         $player = $this->gameEngine->currentPlayer();
         $turnSign = $this->gameEngine->getTurn();
 
@@ -135,6 +137,7 @@ class Game extends Controller implements  GameInterface, AuthentificationInterfa
             'registered' => $registered,
             'player' => $player,
             'turnSign' => $turnSign,
+            'markedCells' => $markedCells
         ]);
     }
     
