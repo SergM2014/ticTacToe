@@ -10,4 +10,4 @@
 </head>
 <body>
 
-    <div class="wrapper">
+    <div id="app" class="wrapper">
