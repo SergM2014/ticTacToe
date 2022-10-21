@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Src\Actions;
 
-use Src\Interfaces\GameProcessInterface;
+use Src\Interfaces\GameActionInterface;
 use Src\Interfaces\AuthentificationInterface;
 use Src\Interfaces\GameEngineInterface;
 use Src\Interfaces\StorageInterface;
 
-class Game extends Controller implements  GameProcessInterface, AuthentificationInterface
+class Game extends Controller implements  GameActionInterface, AuthentificationInterface
 {
     public function __construct(
         private GameEngineInterface $gameEngine,

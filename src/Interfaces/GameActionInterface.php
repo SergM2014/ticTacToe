@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Src\Interfaces;
 
-interface GameProcessInterface
+interface GameActionInterface
 {        
     /**
      * index
@@ -32,5 +32,5 @@ interface GameProcessInterface
      *
      * @return void
      */
-    // public function init(): void;
+     public function init(): void;
 }
