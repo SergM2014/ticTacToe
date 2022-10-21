@@ -44,6 +44,7 @@ class Game extends Controller implements  GameProcessInterface, Authentification
 
         echo json_encode([
             'registered' => true,
+            'play' => true,
             'player' => $player,
             'turnSign' => $turnSign,
             'playedCells' => $playedCells
@@ -81,27 +82,6 @@ class Game extends Controller implements  GameProcessInterface, Authentification
              'playerO' => $playerO,
              'count' => $count
         ]);
-    }
-    
-    /**
-     * play
-     *
-     * @return void
-     */
-    public function play(): void
-    {
-        $this->storage->get();
-
-        if (!$this->playersRegistered()) {
-            echo json_encode(['playersRegistered' => false ]); 
-            return ;
-        }
-
-        $this->gameEngine->resetBoard();
-
-        extract($this->gameEngine->getMovePlayerAndTurn());
-     
-        echo json_encode(['play' => true, 'player' => $player, 'turnSign' => $turnSign ]);
     }
     
     /**

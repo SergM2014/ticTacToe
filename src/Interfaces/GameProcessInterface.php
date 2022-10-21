@@ -12,13 +12,7 @@ interface GameProcessInterface
      * @return mixed
      */
     public function index(): mixed;
-    /**
-     * play
-     *
-     * @return mixed
-     */
-    public function play(): void;
-    
+  
     /**
      * result
      *

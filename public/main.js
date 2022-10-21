@@ -62,7 +62,7 @@ document.body.addEventListener('click', function(e){
 
     if(e.target.id === "playAgain"){
         fetch(
-            '/api/play', {
+            '/api/init', {
             method: 'POST',
             credentials: 'same-origin',
             }
@@ -144,9 +144,13 @@ document.body.addEventListener('click', function(e){
 
 document.body.onload = function(){
 
+    // let post = new FormData;
+    // post.append('post', true);
+
     fetch(
         '/api/init', {
         method: 'POST',
+        // body: post,
         credentials: 'same-origin',
         }
     )
