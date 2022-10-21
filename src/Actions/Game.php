@@ -103,9 +103,10 @@ class Game extends Controller implements  GameProcessInterface, Authentification
      */
     public function register(): void
     {
-        if(isset($_POST['playerX']) && isset($_POST['playerO'])) $this->gameEngine->initSettings('x');
-        
-        $this->play(); 
+        if(isset($_POST['playerX']) && isset($_POST['playerO'])) { 
+            $this->gameEngine->initSettings('x');
+            $this->turn(); 
+        }
 
         return;
     }  
