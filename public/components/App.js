@@ -49,6 +49,19 @@ export default {
                 }
             })
             },
+            cleanBoard() {
+                let itemsToDel = document.querySelectorAll('.smallImg');
+                let classesToDel = document.querySelectorAll('.cell');
+
+                for (let i = 0; i < itemsToDel.length; i++) { 
+                    itemsToDel[i].remove();
+                }
+
+                for(let i = 0; i< classesToDel.length; i++) {
+                    classesToDel[i].classList.remove('played');
+                }
+            },
+
             register() {
                 let formData = new FormData;
                 formData.append('playerX', this.playerX);
@@ -66,7 +79,7 @@ export default {
                         this.showRegister = true;
                     }
                     if (json.play == true) {
-                       // cleanBoard();
+                        this.cleanBoard();
                         this.showRegister = false;
                         this.showPlayBoard = true;
 
