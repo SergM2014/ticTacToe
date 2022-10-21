@@ -317,13 +317,13 @@ class GameEngine implements GameEngineInterface
 
         return compact(['scoreX', 'scoreO', 'playerX', 'playerO', 'count']);
     }
-        
+            
     /**
-     * getMovePlayerAndTurn
+     * getBoardEnviroment
      *
      * @return array
      */
-    public function getMovePlayerAndTurn(): array
+    public function getBoardEnviroment(): array
     {
         $player = $this->currentPlayer();
         $turnSign = $this->getTurn();

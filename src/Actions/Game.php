@@ -40,7 +40,7 @@ class Game extends Controller implements  GameActionInterface, AuthentificationI
 
         $playedCells = $this->gameEngine->getPlayedCells();
 
-        extract($this->gameEngine->getMovePlayerAndTurn());
+        extract($this->gameEngine->getBoardEnviroment());
 
         echo json_encode([
             'registered' => true,
@@ -65,7 +65,7 @@ class Game extends Controller implements  GameActionInterface, AuthentificationI
         
         $this->storage->set();
 
-        extract($this->gameEngine->getMovePlayerAndTurn());
+        extract($this->gameEngine->getBoardEnviroment());
 
         if($win || $tie) $this->gameEngine->resetBoard();
         
@@ -127,7 +127,7 @@ class Game extends Controller implements  GameActionInterface, AuthentificationI
 
         $this->gameEngine->resetBoard();
 
-        extract($this->gameEngine->getMovePlayerAndTurn());
+        extract($this->gameEngine->getBoardEnviroment());
      
         echo json_encode(['play' => true, 'player' => $player, 'turnSign' => $turnSign ]);
     }
