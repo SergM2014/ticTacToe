@@ -2,7 +2,7 @@
 require_once "templates/header.php";
 ?>
 
-<div id="registerForm" class="hidden">
+<div v-show="showRegister" id="registerForm" class="">
    
         <div class="welcome">
             <h1>Start playing Tic Tac Toe!</h1>
@@ -10,24 +10,24 @@ require_once "templates/header.php";
 
             <div class="p-name">
                 <label for="playerX"> Player (First)</label>
-                <input type="text" id="playerX" name="playerX" required />
+                <input type="text" id="playerX" name="playerX" required v-model="playerX"/>
             </div>
 
             <div class="p-name">
                 <label for="playerO"> Player (Second)</label>
-                <input type="text" id="playerO" name="playerO" required />
+                <input type="text" id="playerO" name="playerO" required v-model="playerO" />
             </div>
 
-            <button id="registerButton">Start</button>
+            <button @click="register" id="registerButton">Start</button>
         </div>
     
 </div>
 
-<div id="playBoard" class="hidden" >
+<div v-show="showPlayBoard" id="playBoard" class="" >
 <h2>
     
-    <span id="player"></span>'s turn, plays by
-   <span id="turnSign" class="red"></span>
+    <span id="player" v-text="player"></span>'s turn, plays by
+   <span id="turnSign" class="red" v-text="turnSign"></span>
  
 </h2>
 
@@ -73,7 +73,7 @@ require_once "templates/header.php";
    </table>
 </div>
 
-<div id="resultBlock" class="hidden">
+<div v-show="showResult" id="resultBlock" class="">
     <table class="wrapper" cellpadding="0" cellspacing="0">
         <tr>
             <td>
