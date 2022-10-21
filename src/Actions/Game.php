@@ -60,7 +60,7 @@ class Game extends Controller implements  GameActionInterface, AuthentificationI
     {
         if (!isset($_POST['cell'])) return;
         
-        $win = $this->gameEngine->play($_POST['cell']);
+        $win = $this->gameEngine->play(@$_POST['cell']);
         $tie = $this->gameEngine->playsCount() >= 9 ? true : false;
         
         $this->storage->set();
@@ -103,11 +103,32 @@ class Game extends Controller implements  GameActionInterface, AuthentificationI
      */
     public function register(): void
     {
-        if(isset($_POST['playerX']) && isset($_POST['playerO'])) { 
+        if(isset($_POST['playerX']) && isset($_POST['playerO'])) {
             $this->gameEngine->initSettings('x');
-            $this->turn(); 
+            $this->start(); 
         }
-
+        
         return;
     }  
+    
+    /**
+     * start
+     *
+     * @return void
+     */
+    private function start()
+    {
+        $this->storage->get();
+
+        if (!$this->playersRegistered()) {
+            echo json_encode(['playersRegistered' => false ]); 
+            return ;
+        }
+
+        $this->gameEngine->resetBoard();
+
+        extract($this->gameEngine->getMovePlayerAndTurn());
+     
+        echo json_encode(['play' => true, 'player' => $player, 'turnSign' => $turnSign ]);
+    }
 }
