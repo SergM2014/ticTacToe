@@ -19,13 +19,13 @@ document.body.addEventListener('click', function(e){
         target.appendChild(img);
         target.classList.add('played');
 
-        let formData = new FormData;
-        formData.append('cell', cell);
+        let post = new FormData;
+        post.append('cell', cell);
         
         fetch(
             '/api/turn', {
             method: 'POST',
-            body: formData,
+            body: post,
             credentials: 'same-origin',
             }
         )
@@ -143,45 +143,45 @@ document.body.addEventListener('click', function(e){
 })
 
 document.body.onload = function(){
-    
-        fetch(
-            '/api/init', {
-            method: 'POST',
-            credentials: 'same-origin',
-            }
-        )
-        .then(response => response.json())
-        .then(json => {
 
-            if(!json.registered) {
-                registerForm.classList.remove('hidden');
-                playBoard.classList.add('hidden');
-                resultBlock.classList.add('hidden');
-                return;
-            } else {
-                registerForm.classList.add('hidden');
-                playBoard.classList.remove('hidden');
-                resultBlock.classList.add('hidden');
+    fetch(
+        '/api/init', {
+        method: 'POST',
+        credentials: 'same-origin',
+        }
+    )
+    .then(response => response.json())
+    .then(json => {
 
-                document.getElementById('player').innerText = json.player;
-                document.getElementById('turnSign').innerText = json.turnSign;
+        if(!json.registered) {
+            registerForm.classList.remove('hidden');
+            playBoard.classList.add('hidden');
+            resultBlock.classList.add('hidden');
+            return;
+        } else {
+            registerForm.classList.add('hidden');
+            playBoard.classList.remove('hidden');
+            resultBlock.classList.add('hidden');
 
-                let img;
-                let cells = document.querySelectorAll('.cell');
-                for (let i = 0; i < cells.length; i++) { 
-                    if (json.markedCells[i+1] ){
-                        if(json.playedCells[i+1] == "x"){
-                            img = `<img src="/images/cross.png" class="smallImg" />`;
-                        } else {
-                            img = `<img src="/images/circle.png" class="smallImg" />`;
-                        }
+            document.getElementById('player').innerText = json.player;
+            document.getElementById('turnSign').innerText = json.turnSign;
 
-                        cells[i].innerHTML = img;
-                        cells[i].classList.add('played');
+            let img;
+            let cells = document.querySelectorAll('.cell');
+            for (let i = 0; i < cells.length; i++) { 
+                if (json.playedCells[i+1] ){
+                    if(json.playedCells[i+1] == "x"){
+                        img = `<img src="/images/cross.png" class="smallImg" />`;
+                    } else {
+                        img = `<img src="/images/circle.png" class="smallImg" />`;
                     }
+
+                    cells[i].innerHTML = img;
+                    cells[i].classList.add('played');
                 }
             }
-        })
+        }
+    })
 }
 
 function cleanBoard(){

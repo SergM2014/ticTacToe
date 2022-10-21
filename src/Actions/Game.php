@@ -25,6 +25,63 @@ class Game extends Controller implements  GameProcessInterface, Authentification
     {
         return view('index.php');
     }
+
+    /**
+     * init
+     *
+     * @return void
+     */
+    public function init(): void
+    {
+        if(!$this->playersRegistered()) { 
+            echo json_encode(['registered' => false]);
+            return;
+        }
+
+        $playedCells = $this->gameEngine->getPlayedCells();
+
+        extract($this->gameEngine->getMovePlayerAndTurn());
+
+        echo json_encode([
+            'registered' => true,
+            'player' => $player,
+            'turnSign' => $turnSign,
+            'playedCells' => $playedCells
+        ]);
+    }
+
+    /**
+     * turn
+     *
+     * @return void
+     */
+    public function turn(): void
+    {
+        if (!isset($_POST['cell'])) return;
+        
+        $win = $this->gameEngine->play($_POST['cell']);
+        $tie = $this->gameEngine->playsCount() >= 9 ? true : false;
+        
+        $this->storage->set();
+
+        extract($this->gameEngine->getMovePlayerAndTurn());
+
+        if($win || $tie) $this->gameEngine->resetBoard();
+        
+        extract($this->gameEngine->getMoveInfo());
+
+        echo json_encode([
+             'player' => $player,
+             'turnSign' => $turnSign, 
+             'win' => $win,
+             'tie' => $tie,
+             'scoreX' => $scoreX,
+             'scoreO' => $scoreO,
+             'playerX' => $playerX,
+             'playerO' => $playerO,
+             'count' => $count
+        ]);
+    }
     
     /**
      * play
@@ -71,63 +128,5 @@ class Game extends Controller implements  GameProcessInterface, Authentification
         $this->play(); 
 
         return;
-    }
-    
-    /**
-     * turn
-     *
-     * @return void
-     */
-    public function turn(): void
-    {
-        if (!isset($_POST['cell'])) return;
-        
-        $win = $this->gameEngine->play($_POST['cell']);
-        $tie = $this->gameEngine->playsCount() >= 9 ? true : false;
-        
-        $this->storage->set();
-
-        extract($this->gameEngine->getMovePlayerAndTurn());
-
-        if($win || $tie) $this->gameEngine->resetBoard();
-        
-        extract($this->gameEngine->getMoveInfo());
-
-        echo json_encode([
-             'player' => $player,
-             'turnSign' => $turnSign, 
-             'win' => $win,
-             'tie' => $tie,
-             'scoreX' => $scoreX,
-             'scoreO' => $scoreO,
-             'playerX' => $playerX,
-             'playerO' => $playerO,
-             'count' => $count
-        ]);
-    }
-    
-    /**
-     * init
-     *
-     * @return void
-     */
-    public function init(): void
-    {
-        if(!$this->playersRegistered()) { 
-            echo json_encode(['registered' => false]);
-            return;
-        }
-
-        $playedCells = $this->gameEngine->getPlayedCells();
-
-        extract($this->gameEngine->getMovePlayerAndTurn());
-
-        echo json_encode([
-            'registered' => true,
-            'player' => $player,
-            'turnSign' => $turnSign,
-            'playedCells' => $playedCells
-        ]);
-    }
-    
+    }  
 }
