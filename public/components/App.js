@@ -149,7 +149,44 @@ export default {
                         this.player = json.player;
                         this.turnSign = json.turnSign;
                     })
-            } 
+            } ,
+           replay() {
+                fetch(
+                    '/api/init', {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    }
+                )
+                .then(response => response.json())
+                .then(json => {
+                    if (!json.playersRegistered) {
+                        this.showRegister = true;
+                    }
+                    if (json.play == true) {
+                        this.cleanBoard();  
+                        this.showRegister = false;
+                        this.showPlayBoard = true;
+                        this.showResult = false;
+                    }
+        
+                })
+            },
+            reset() {
+                fetch(
+                    '/api/reset', {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    }
+                )
+                .then(response => response.json())
+                .then(json => {
+                    if (!json.playersRegistered) {
+                        this.showRegister = true;
+                        this.showResult = false;
+                        this.cleanBoard();  
+                    }
+                })
+            }
         },
         mounted() {
             this.init()

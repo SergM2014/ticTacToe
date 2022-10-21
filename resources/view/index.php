@@ -90,8 +90,8 @@ require_once "templates/header.php";
                          <span v-text="playerOresult"></span>'s score: <b><span v-text="scoreO"></span></b>
                     </div> 
 
-                    <button type="button" id="playAgain" class="playAgain">Play again</button>
-                    <button type="button" id="resetGame" class="resetGame">Reset Game</button>
+                    <button type="button" @click="replay" class="playAgain">Play again</button>
+                    <button type="button" @click="reset" class="resetGame">Reset Game</button>
 
                 </div>
             </td>
