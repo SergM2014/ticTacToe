@@ -62,7 +62,7 @@ require_once "templates/header.php";
            }
            ?>
 
-           <td class="cell  <?= $additionalClass ?>"data-id="<?= $i ?>">
+           <td class="cell  <?= $additionalClass ?>"data-id="<?= $i ?>" @click="turn">
              
            </td>
 
@@ -79,15 +79,15 @@ require_once "templates/header.php";
             <td>
                 <div class="welcome">
 
-                    <h1 id="outputWinner" class="hidden"> <span id="winnerName"></span> won!</h1>
+                    <h1 id="outputWinner" class="hidden"> <span v-text="winner"></span> won!</h1>
                     <h1 id="outputTie" class="hidden">It's a tie!</h1>
 
                     <div  class="player-name">
-                         <span id="playerXresult"></span>'s score: <b><span id="scoreX"></span></b>
+                         <span v-text="playerXresult"></span>'s score: <b><span v-text="scoreX"></span></b>
                     </div>
 
                     <div class="player-name">
-                         <span id="playerOresult"></span>'s score: <b><span id="scoreO"></span></b>
+                         <span v-text="playerOresult"></span>'s score: <b><span v-text="scoreO"></span></b>
                     </div> 
 
                     <button type="button" id="playAgain" class="playAgain">Play again</button>

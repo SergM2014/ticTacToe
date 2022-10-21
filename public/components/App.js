@@ -9,6 +9,11 @@ export default {
             turnSign: 'x',
             playerX: '',
             playerO: '',
+            playerXresult: '',
+            playerOresult: '',
+            scoreX: 0,
+            scoreO: 0,
+            winner: '',
         }
     },
 
@@ -85,9 +90,66 @@ export default {
 
                         this.player = json.player;
                         this.turnSign = json.turnSign;
-            }
-        })
-            }
+                    }
+                })
+            },
+            turn(e) {
+
+                let target = e.target.closest('.cell');
+
+                if(target.classList.contains('played'))return;
+
+                
+                let cell = target.dataset.id;
+                //let turnSign = document.getElementById('turnSign').innerText;
+                let img = document.createElement('img');
+            
+                let src = this.turnSign === 'x'? "/images/cross.png" : "/images/circle.png";
+                img.src= src;
+                img.classList.add('smallImg')
+                target.appendChild(img);
+                target.classList.add('played');
+
+                let post = new FormData;
+                post.append('cell', cell);
+                
+                fetch(
+                    '/api/turn', {
+                        method: 'POST',
+                        body: post,
+                        credentials: 'same-origin',
+                    }
+                    )
+                    .then(response => response.json())
+                    .then(json => {
+                        this.player = json.player;
+                        this.turnSign = json.turnSign;
+                    
+                        if(json.win || json.tie) {
+                            this.showResult = true;
+                            this.showPlayBoard = false;
+
+                            this.playerXresult = json.playerX;
+                            this.playerOresult = json.playerO;
+
+                            this.scoreX = json.scoreX;
+                            this.scoreO = json.scoreO;
+
+                            if(json.win) {
+                                document.getElementById('outputWinner').classList.remove('hidden');
+                                this.winner = json.player;
+                                document.getElementById('outputTie').classList.add('hidden');
+                            }
+                            if(json.tie) {
+                                document.getElementById('outputTie').classList.remove('hidden');
+                                document.getElementById('outputWinner').classList.add('hidden');
+                            }
+                        }
+
+                        this.player = json.player;
+                        this.turnSign = json.turnSign;
+                    })
+            } 
         },
         mounted() {
             this.init()
