@@ -1,7 +1,6 @@
 
     </div>
 </body>
-<!-- <script src="/main.js?ver=<?=time() ?>"></script> -->
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
 <script type="module">
