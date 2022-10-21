@@ -70,17 +70,11 @@ document.body.addEventListener('click', function(e){
         .then(response => response.json())
         .then(json => {
             if (!json.playersRegistered) {
-                registerForm.classList.remove('hidden');
-                resultBlock.classList.add('hidden');
-                playBoard.classList.add('hidden');
+                showRegisterForm();
             }
             if (json.play == true) {
-
                 cleanBoard();  
-
-                registerForm.classList.add('hidden');
-                resultBlock.classList.add('hidden');
-                playBoard.classList.remove('hidden');
+                showPlayboard();
             }
 
         })
@@ -96,10 +90,7 @@ document.body.addEventListener('click', function(e){
         .then(response => response.json())
         .then(json => {
             if (!json.playersRegistered) {
-                registerForm.classList.remove('hidden');
-                resultBlock.classList.add('hidden');
-                playBoard.classList.add('hidden');
-
+                showRegisterForm();
                 cleanBoard();  
             }
         })
@@ -122,35 +113,23 @@ document.body.addEventListener('click', function(e){
         .then(response => response.json())
         .then(json => {
             if (!json.playersRegistered) {
-                registerForm.classList.remove('hidden');
-                resultBlock.classList.add('hidden');
-                playBoard.classList.add('hidden');
+                showRegisterForm();
             }
             if (json.play == true) {
-
                 cleanBoard();
-               
-                registerForm.classList.add('hidden');
-                resultBlock.classList.add('hidden');
-                playBoard.classList.remove('hidden');
+                showPlayboard();
 
                 document.getElementById('player').innerText = json.player;
                 document.getElementById('turnSign').innerText = json.turnSign;
             }
-
         })
     }
 })
 
 document.body.onload = function(){
-
-    // let post = new FormData;
-    // post.append('post', true);
-
     fetch(
         '/api/init', {
         method: 'POST',
-        // body: post,
         credentials: 'same-origin',
         }
     )
@@ -158,14 +137,10 @@ document.body.onload = function(){
     .then(json => {
 
         if(!json.registered) {
-            registerForm.classList.remove('hidden');
-            playBoard.classList.add('hidden');
-            resultBlock.classList.add('hidden');
+            showRegisterForm();
             return;
         } else {
-            registerForm.classList.add('hidden');
-            playBoard.classList.remove('hidden');
-            resultBlock.classList.add('hidden');
+            showPlayboard();            
 
             document.getElementById('player').innerText = json.player;
             document.getElementById('turnSign').innerText = json.turnSign;
@@ -188,8 +163,8 @@ document.body.onload = function(){
     })
 }
 
-function cleanBoard(){
-
+function cleanBoard()
+{
     let itemsToDel = document.querySelectorAll('.smallImg');
     let classesToDel = document.querySelectorAll('.cell');
 
@@ -200,4 +175,18 @@ function cleanBoard(){
     for(let i = 0; i< classesToDel.length; i++) {
         classesToDel[i].classList.remove('played');
     }
+}
+
+function showRegisterForm()
+{
+    registerForm.classList.remove('hidden');
+    playBoard.classList.add('hidden');
+    resultBlock.classList.add('hidden');
+}
+
+function showPlayboard()
+{
+    registerForm.classList.add('hidden');
+    playBoard.classList.remove('hidden');
+    resultBlock.classList.add('hidden');
 }
