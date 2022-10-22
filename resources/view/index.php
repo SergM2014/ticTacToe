@@ -62,7 +62,7 @@ require_once "templates/header.php";
            }
            ?>
 
-           <td class="cell  <?= $additionalClass ?>"data-id="<?= $i ?>" @click="turn">
+           <td class="cell  <?= $additionalClass ?>" id="cell_<?= $i ?>" @click="turn(<?= $i ?>)">
              
            </td>
 

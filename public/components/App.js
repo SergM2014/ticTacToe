@@ -18,7 +18,6 @@ export default {
     },
 
     methods: {
-        
         init() {
             fetch(
                 '/api/init', {
@@ -49,11 +48,12 @@ export default {
         
                             cells[i].innerHTML = img;
                             cells[i].classList.add('played');
+                            }
                         }
                     }
-                }
-            })
+                })
             },
+
             cleanBoard() {
                 let itemsToDel = document.querySelectorAll('.smallImg');
                 let classesToDel = document.querySelectorAll('.cell');
@@ -93,25 +93,20 @@ export default {
                     }
                 })
             },
-            turn(e) {
-
-                let target = e.target.closest('.cell');
-
-                if(target.classList.contains('played'))return;
-
+            turn(id) {
+                let targetCell = document.getElementById(`cell_${id}`);
+                if(targetCell.classList.contains('played'))return;
                 
-                let cell = target.dataset.id;
-                //let turnSign = document.getElementById('turnSign').innerText;
                 let img = document.createElement('img');
             
                 let src = this.turnSign === 'x'? "/images/cross.png" : "/images/circle.png";
                 img.src= src;
                 img.classList.add('smallImg')
-                target.appendChild(img);
-                target.classList.add('played');
+                targetCell.appendChild(img);
+                targetCell.classList.add('played');
 
                 let post = new FormData;
-                post.append('cell', cell);
+                post.append('cell', id);
                 
                 fetch(
                     '/api/turn', {
@@ -168,7 +163,6 @@ export default {
                         this.showPlayBoard = true;
                         this.showResult = false;
                     }
-        
                 })
             },
             reset() {
@@ -188,8 +182,8 @@ export default {
                 })
             }
         },
+
         mounted() {
             this.init()
         }
-    
 }
