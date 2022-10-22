@@ -14,6 +14,8 @@ export default {
             scoreX: 0,
             scoreO: 0,
             winner: '',
+            outputWinner: false,
+            outputTie: false,
         }
     },
 
@@ -131,13 +133,13 @@ export default {
                             this.scoreO = json.scoreO;
 
                             if(json.win) {
-                                document.getElementById('outputWinner').classList.remove('hidden');
+                                this.outputWinner = true;
                                 this.winner = json.player;
-                                document.getElementById('outputTie').classList.add('hidden');
+                                this.outputTie = false;
                             }
                             if(json.tie) {
-                                document.getElementById('outputTie').classList.remove('hidden');
-                                document.getElementById('outputWinner').classList.add('hidden');
+                                this.outputTie = true;
+                                this.outputWinner = false;
                             }
                         }
 

@@ -79,8 +79,8 @@ require_once "templates/header.php";
             <td>
                 <div class="welcome">
 
-                    <h1 id="outputWinner" class="hidden"> <span v-text="winner"></span> won!</h1>
-                    <h1 id="outputTie" class="hidden">It's a tie!</h1>
+                    <h1 v-show="outputWinner" > <span v-text="winner"></span> won!</h1>
+                    <h1 v-show="outputTie" >It's a tie!</h1>
 
                     <div  class="player-name">
                          <span v-text="playerXresult"></span>'s score: <b><span v-text="scoreX"></span></b>
