@@ -2,32 +2,36 @@
 require_once "templates/header.php";
 ?>
 
-<div v-show="showRegister" id="registerForm" class="">
+<div v-show="showRegister">
    
         <div class="welcome">
             <h1>Start playing Tic Tac Toe!</h1>
             <h2>Please fill in your names</h2>
 
-            <div class="p-name">
-                <label for="playerX"> Player (First)</label>
-                <input type="text" id="playerX" name="playerX" required v-model="playerX"/>
-            </div>
+            <form @submit.prevent="register">
 
-            <div class="p-name">
-                <label for="playerO"> Player (Second)</label>
-                <input type="text" id="playerO" name="playerO" required v-model="playerO" />
-            </div>
+                <div class="p-name">
+                    <label for="playerX"> Player (First)</label>
+                    <input type="text" id="playerX" name="playerX" required v-model="playerX"/>
+                </div>
 
-            <button @click="register" id="registerButton">Start</button>
+                <div class="p-name">
+                    <label for="playerO"> Player (Second)</label>
+                    <input type="text" id="playerO" name="playerO" required v-model="playerO" />
+                </div>
+
+                <button type="submit">Register</button>
+
+            </form>
         </div>
     
 </div>
 
-<div v-show="showPlayBoard" id="playBoard" class="" >
+<div v-show="showPlayBoard" >
 <h2>
     
-    <span id="player" v-text="player"></span>'s turn, plays by
-   <span id="turnSign" class="red" v-text="turnSign"></span>
+   <span  v-text="player"></span>'s turn, plays by
+   <span  class="red" v-text="turnSign"></span>
  
 </h2>
 
@@ -67,13 +71,14 @@ require_once "templates/header.php";
            </td>
 
        <?php } ?>
+       <tr v-for= "line in gridrows" class='row-1'>{{ line }}</tr>
 
        </tr>
        </tbody>
    </table>
 </div>
 
-<div v-show="showResult" id="resultBlock" class="">
+<div v-show="showResult" >
     <table class="wrapper" cellpadding="0" cellspacing="0">
         <tr>
             <td>
