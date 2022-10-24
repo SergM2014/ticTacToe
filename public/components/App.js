@@ -1,14 +1,14 @@
+import RegisterForm from "/components/RegisterForm.js";
 export default {
-    
+    components: { RegisterForm },
+
     data () {
         return {
-            showRegister: false,
+            showRegister: true,
             showPlayBoard: false,
             showResult: false,
             player: '',
             turnSign: 'x',
-            playerX: '',
-            playerO: '',
             playerXresult: '',
             playerOresult: '',
             scoreX: 0,
@@ -16,8 +16,6 @@ export default {
             winner: '',
             outputWinner: false,
             outputTie: false,
-          ///  cells: [1,2,3,4,5,6,7,8,9],
-            gridrows: [0,1,2],
         }
     },
 
@@ -71,10 +69,10 @@ export default {
             }
         },
 
-        register() {
+        register(playerX, playerO) {
             let formData = new FormData;
-            formData.append('playerX', this.playerX);
-            formData.append('playerO', this.playerO);
+            formData.append('playerX', playerX);
+            formData.append('playerO', playerO);
             fetch(
                 '/register', {
                 method: 'POST',

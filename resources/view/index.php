@@ -1,31 +1,8 @@
 <?php
 require_once "templates/header.php";
 ?>
+<register-form :show="showRegister" @register="register" />
 
-<div v-show="showRegister">
-   
-        <div class="welcome">
-            <h1>Start playing Tic Tac Toe!</h1>
-            <h2>Please fill in your names</h2>
-
-            <form @submit.prevent="register">
-
-                <div class="p-name">
-                    <label for="playerX"> Player (First)</label>
-                    <input type="text" id="playerX" name="playerX" required v-model="playerX"/>
-                </div>
-
-                <div class="p-name">
-                    <label for="playerO"> Player (Second)</label>
-                    <input type="text" id="playerO" name="playerO" required v-model="playerO" />
-                </div>
-
-                <button type="submit">Register</button>
-
-            </form>
-        </div>
-    
-</div>
 
 <div v-show="showPlayBoard" >
 <h2>
@@ -71,7 +48,6 @@ require_once "templates/header.php";
            </td>
 
        <?php } ?>
-       <tr v-for= "line in gridrows" class='row-1'>{{ line }}</tr>
 
        </tr>
        </tbody>
