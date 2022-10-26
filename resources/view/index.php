@@ -1,7 +1,7 @@
 <?php
 require_once "templates/header.php";
 ?>
-<register-form :show="showRegister" @register="register" />
+<register-form :show="showRegister" @register="register"></register-form>
 
 
 <div v-show="showPlayBoard" >
@@ -54,30 +54,7 @@ require_once "templates/header.php";
    </table>
 </div>
 
-<div v-show="showResult" >
-    <table class="wrapper" cellpadding="0" cellspacing="0">
-        <tr>
-            <td>
-                <div class="welcome">
+<result-block :show="showResult" :result="result" @replay="replay" @reset="reset" ></result-block>
 
-                    <h1 v-show="outputWinner" > <span v-text="winner"></span> won!</h1>
-                    <h1 v-show="outputTie" >It's a tie!</h1>
-
-                    <div  class="player-name">
-                         <span v-text="playerXresult"></span>'s score: <b><span v-text="scoreX"></span></b>
-                    </div>
-
-                    <div class="player-name">
-                         <span v-text="playerOresult"></span>'s score: <b><span v-text="scoreO"></span></b>
-                    </div> 
-
-                    <button type="button" @click="replay" class="playAgain">Play again</button>
-                    <button type="button" @click="reset" class="resetGame">Reset Game</button>
-
-                </div>
-            </td>
-        </tr>
-    </table>
-</div>
 <?php
 require_once "templates/footer.php";

@@ -1,6 +1,7 @@
 import RegisterForm from "/components/RegisterForm.js";
+import ResultBlock from "/components/ResultBlock.js";
 export default {
-    components: { RegisterForm },
+    components: { RegisterForm, ResultBlock },
 
     data () {
         return {
@@ -9,13 +10,7 @@ export default {
             showResult: false,
             player: '',
             turnSign: 'x',
-            playerXresult: '',
-            playerOresult: '',
-            scoreX: 0,
-            scoreO: 0,
-            winner: '',
-            outputWinner: false,
-            outputTie: false,
+            result: {}
         }
     },
 
@@ -32,8 +27,10 @@ export default {
         
                 if(!json.registered) {
                     this.showRegister = true;
-                } else {
-                    this.showPlayBoard = true;            
+                }
+                if (json.play == true ) {
+                    this.showPlayBoard = true; 
+                    this.showRegister = false;           
         
                     this.player = json.player;
                     this.turnSign = json.turnSign;
@@ -127,20 +124,20 @@ export default {
                         this.showResult = true;
                         this.showPlayBoard = false;
 
-                        this.playerXresult = json.playerX;
-                        this.playerOresult = json.playerO;
+                        this.result.playerX = json.playerX;
+                        this.result.playerO = json.playerO;
 
-                        this.scoreX = json.scoreX;
-                        this.scoreO = json.scoreO;
+                        this.result.scoreX = json.scoreX;
+                        this.result.scoreO = json.scoreO;
 
                         if(json.win) {
-                            this.outputWinner = true;
-                            this.winner = json.player;
-                            this.outputTie = false;
+                            this.result.showWinner = true;
+                            this.result.winner = json.player;
+                            this.result.showTie = false;
                         }
                         if(json.tie) {
-                            this.outputTie = true;
-                            this.outputWinner = false;
+                            this.result.showTie = true;
+                            this.result.showWinner = json.player;
                         }
                     }
 
