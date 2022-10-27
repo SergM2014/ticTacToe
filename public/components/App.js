@@ -1,7 +1,9 @@
 import RegisterForm from "/components/RegisterForm.js";
 import ResultBlock from "/components/ResultBlock.js";
+import PlayBoard from "/components/PlayBoard.js";
+
 export default {
-    components: { RegisterForm, ResultBlock },
+    components: { RegisterForm, ResultBlock, PlayBoard },
 
     data () {
         return {
@@ -93,8 +95,9 @@ export default {
             })
         },
 
-        turn(id) {
-            let targetCell = document.getElementById(`cell_${id}`);
+        turn(parametr) {       
+            let targetCell = document.getElementById(`cell_${parametr}`);
+          
             if(targetCell.classList.contains('played'))return;
             
             let img = document.createElement('img');
@@ -106,7 +109,7 @@ export default {
             targetCell.classList.add('played');
 
             let post = new FormData;
-            post.append('cell', id);
+            post.append('cell', parametr);
             
             fetch(
                 '/api/turn', {
