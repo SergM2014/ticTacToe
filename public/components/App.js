@@ -12,7 +12,8 @@ export default {
             showResult: false,
             player: '',
             turnSign: 'x',
-            result: {}
+            result: {},
+            cells: {},
         }
     },
 
@@ -36,21 +37,7 @@ export default {
         
                     this.player = json.player;
                     this.turnSign = json.turnSign;
-        
-                    let img;
-                    let cells = document.querySelectorAll('.cell');
-                    for (let i = 0; i < cells.length; i++) { 
-                        if (json.playedCells[i+1] ){
-                            if(json.playedCells[i+1] == "x"){
-                                 img = `<img src="/images/cross.png" class="smallImg" />`;
-                            } else {
-                                 img = `<img src="/images/circle.png" class="smallImg" />`;
-                            }
-        
-                            cells[i].innerHTML = img;
-                            cells[i].classList.add('played');
-                            }
-                        }
+                    this.cells = json.playedCells;
                     }
                 })
             },

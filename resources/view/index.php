@@ -3,7 +3,7 @@ require_once "templates/header.php";
 ?>
 <register-form :show="showRegister" @register="register"></register-form>
 
-<play-board :show="showPlayBoard" :turn-sign="turnSign" :player="player"  @turn="turn"></play-board>
+<play-board :show="showPlayBoard" :turn-sign="turnSign" :player="player" :cells="cells" @turn="turn"></play-board>
 
 <result-block :show="showResult" :result="result" @replay="replay" @reset="reset" ></result-block>
 
