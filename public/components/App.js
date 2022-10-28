@@ -43,16 +43,7 @@ export default {
             },
 
         cleanBoard() {
-            let itemsToDel = document.querySelectorAll('.smallImg');
-            let classesToDel = document.querySelectorAll('.cell');
-
-            for (let i = 0; i < itemsToDel.length; i++) { 
-                itemsToDel[i].remove();
-            }
-
-            for(let i = 0; i< classesToDel.length; i++) {
-                classesToDel[i].classList.remove('played');
-            }
+            this.cells = {}
         },
 
         register(playerX, playerO) {
