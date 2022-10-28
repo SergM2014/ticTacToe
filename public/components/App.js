@@ -83,17 +83,8 @@ export default {
         },
 
         turn(parametr) {       
-            let targetCell = document.getElementById(`cell_${parametr}`);
-          
-            if(targetCell.classList.contains('played'))return;
             
-            let img = document.createElement('img');
-        
-            let src = this.turnSign === 'x'? "/images/cross.png" : "/images/circle.png";
-            img.src= src;
-            img.classList.add('smallImg')
-            targetCell.appendChild(img);
-            targetCell.classList.add('played');
+            this.cells[parametr] = this.turnSign;
 
             let post = new FormData;
             post.append('cell', parametr);
