@@ -73,10 +73,8 @@ export default {
             })
         },
 
-        turn(parametr) {       
-            
+        turn(parametr) {             
             this.cells[parametr] = this.turnSign;
-
             let post = new FormData;
             post.append('cell', parametr);
             
