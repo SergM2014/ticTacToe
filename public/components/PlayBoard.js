@@ -35,20 +35,7 @@ export default {
     data () {
         return {}
     },
-   methods:{
-    showComponent(id) {
-        let sign;
-        if (this.cells[id] == 'x') sign = 'Xsign';
-        if (this.cells[id] == 'o') sign = 'Osign';
-        if (!this.cells[id]) sign = 'NullSign';
-       
-        return sign;
-    },
-    playedCell(id) {
-        if (this.cells[id] == 'x' || this.cells[id] == 'o') return true;
-        return false;
-    }
-   },
+    
     props: {
         show: Boolean,
         player: String,
